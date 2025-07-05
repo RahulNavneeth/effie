@@ -1,20 +1,25 @@
 CC = clang
 CFLAGS = -std=c11 -O3 -g -Wall
-CFLAGS += -Iinclude
+CFLAGS += -Iinclude -Ilib/bec/include
+LDFLAGS = -Llib/bec/bin
+LDFLAGS += -lbec
 
 BIN = bin
 SRC = $(wildcard src/*.c)
 OBJ = $(patsubst src/%.c, $(BIN)/src/%.o, $(SRC))
 
-.PHONY: all clean run
+.PHONY: all libs clean run
 
-all: dirs build
+all: dirs libs build
 
 dirs:
 	mkdir -p $(BIN)/src
 
+libs:
+	cd lib/bec && make all # bec
+
 build: $(OBJ)
-	$(CC) -o $(BIN)/effie $^ #liblink
+	$(CC) -o $(BIN)/effie $^ $(LDFLAGS)
 
 $(BIN)/src/%.o: src/%.c
 	$(CC) -o $@ -c $< $(CFLAGS)
@@ -24,5 +29,5 @@ clean:
 
 run: all
 	@echo "----------"
-	@$(BIN)/effie
+	@$(BIN)/effie $(word 2, $(MAKECMDGOALS)) 
 	@echo "----------"

@@ -1,0 +1,3 @@
+[submodule "lib/bec"]
+	path = lib/bec
+	url = https://github.com/RahulNavneeth/bec
