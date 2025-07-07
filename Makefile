@@ -29,5 +29,7 @@ clean:
 
 run: all
 	@echo "----------"
-	@$(BIN)/effie $(word 2, $(MAKECMDGOALS)) 
+	@$(BIN)/effie $(ARGS)
 	@echo "----------"
+
+ARGS := $(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
