@@ -15,6 +15,6 @@ Eff *init_effie (char *filePath) {
 		return NULL;
 	}
 	eff->torrent = torrent;
-    printf("\e[32mOk :: Initialised Effie successfully\e[0m\n");
+	printf("\e[32mOk :: Initialised Effie successfully\e[0m\n");
 	return eff; 
 }

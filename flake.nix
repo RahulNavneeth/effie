@@ -12,7 +12,10 @@
 		devShell = pkgs.mkShell {
 			packages = with pkgs; [
 				clang
+				cmake
 				gnumake
+				pkg-config
+				sdl3
 			];
 		};
 	});

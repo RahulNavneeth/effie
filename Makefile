@@ -1,8 +1,8 @@
 CC = clang
 CFLAGS = -std=c11 -O3 -g -Wall
-CFLAGS += -Iinclude -Ilib/bec/include
-LDFLAGS = -Llib/bec/bin
-LDFLAGS += -lbec
+CFLAGS += -Ilib -Iinclude -Ilib/bec/include
+LDFLAGS = -Llib/bec/bin $(shell pkg-config --cflags sdl3)
+LDFLAGS += -lbec $(shell pkg-config --libs sdl3)
 
 BIN = bin
 SRC = $(wildcard src/*.c)
