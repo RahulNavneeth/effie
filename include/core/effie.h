@@ -1,7 +1,7 @@
 #ifndef EFF_H
 #define EFF_H
 
-#include "torrent.h"
+#include "core/torrent.h"
 
 typedef struct {
 	Torrent* torrent;

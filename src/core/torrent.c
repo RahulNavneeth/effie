@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "torrent.h"
+#include "core/torrent.h"
 
 Torrent *init_torrent (char *filePath) {
     FILE *file = fopen (filePath, "rb");

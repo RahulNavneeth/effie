@@ -1,27 +1,29 @@
 CC = clang
 CFLAGS = -std=c11 -O3 -g -Wall
-CFLAGS += -Ilib -Iinclude -Ilib/bec/include
-LDFLAGS = -Llib/bec/bin $(shell pkg-config --cflags sdl3)
-LDFLAGS += -lbec $(shell pkg-config --libs sdl3)
+CFLAGS +=  -Ilib -Iinclude -Ilib/bec/include
+CFLAGS += $(shell pkg-config --cflags sdl3)
+LDFLAGS = -Llib/bec/bin -lbec
+LDFLAGS += $(shell pkg-config --libs sdl3)
 
 BIN = bin
-SRC = $(wildcard src/*.c)
-OBJ = $(patsubst src/%.c, $(BIN)/src/%.o, $(SRC))
+SRC = $(shell find src -name '*.c')
+OBJ = $(patsubst src/%.c,$(BIN)/%.o,$(SRC))
 
-.PHONY: all libs clean run
+.PHONY: all dirs libs build clean run
 
 all: dirs libs build
 
 dirs:
-	mkdir -p $(BIN)/src
+	mkdir -p $(BIN)
 
 libs:
-	cd lib/bec && make all # bec
+	$(MAKE) -C lib/bec all
 
 build: $(OBJ)
 	$(CC) -o $(BIN)/effie $^ $(LDFLAGS)
 
-$(BIN)/src/%.o: src/%.c
+$(BIN)/%.o: src/%.c
+	@mkdir -p $(dir $@)
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 clean:

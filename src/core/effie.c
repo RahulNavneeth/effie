@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "effie.h"
+#include "core/effie.h"
 
 Eff *init_effie (char *filePath) {
 	Torrent *torrent = init_torrent (filePath);

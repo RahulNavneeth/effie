@@ -12,6 +12,7 @@ int32_t main (int32_t argc, char **argv) {
     }
 
 	Eff *effie = init_effie (argv[1]);
+	if (effie == NULL) return 1;
 	// printf ("FileSize -> %ld\n", effie->torrent->fileSize);
 	// printf ("FilePath -> %s\n", effie->torrent->filePath);
 	// bec_print(effie->torrent->contents, 0);
