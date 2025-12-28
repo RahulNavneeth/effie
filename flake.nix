@@ -1,5 +1,5 @@
 {
-	description = "Effie";
+	description = "effie";
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 		flake-utils.url = "github:numtide/flake-utils";
@@ -11,11 +11,8 @@
 	in {
 		devShell = pkgs.mkShell {
 			packages = with pkgs; [
-				clang
-				cmake
-				gnumake
-				pkg-config
-				sdl3
+				clang gnumake
+				pkg-config sdl3
 			];
 		};
 	});

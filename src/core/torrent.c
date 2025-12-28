@@ -46,9 +46,11 @@ Torrent *init_torrent (char *filePath) {
     }
 
 
+	const char *b_content = content; // for bec's sanity
+
     torrent->fileSize = file_size;
     torrent->filePath = strdup (filePath);
-    torrent->contents = bec_decode (&content);
+    torrent->contents = bec_decode (&b_content);
 
     printf("\e[32mOk :: Initialised torrent file successfully\e[0m\n");
 
